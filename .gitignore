@@ -1,4 +1,6 @@
 .idea
+.swp
+.tmp
 
 # CMake
 Makefile
