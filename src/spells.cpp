@@ -2187,11 +2187,11 @@ void spellLoseEXP(int32_t adjustment) {
         Class_t const &character_class = classes[py.misc.class_id];
 
         if (character_class.class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE) {
-            playerCalculateAllowedSpellsCount(PlayerAttr::A_INT);
+            playerCalculateAllowedSpellsCount(PlayerAttr::A_WIS);
             playerGainMana(PlayerAttr::A_INT);
         } else if (character_class.class_to_use_mage_spells == config::spells::SPELL_TYPE_PRIEST) {
             playerCalculateAllowedSpellsCount(PlayerAttr::A_WIS);
-            playerGainMana(PlayerAttr::A_WIS);
+            playerGainMana(PlayerAttr::A_INT);
         }
         printCharacterLevel();
         printCharacterTitle();

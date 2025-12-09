@@ -859,7 +859,7 @@ void playerGainSpells() {
         if (!playerCanRead()) {
             return;
         }
-        stat = PlayerAttr::A_INT;
+        stat = PlayerAttr::A_WIS;
         offset = config::spells::NAME_OFFSET_SPELLS;
     } else {
         stat = PlayerAttr::A_WIS;
@@ -870,7 +870,7 @@ void playerGainSpells() {
 
     if (new_spells == 0) {
         vtype_t tmp_str = {'\0'};
-        (void) snprintf(tmp_str, MORIA_MESSAGE_SIZE, "You can't learn any new %ss!", (stat == PlayerAttr::A_INT ? "spell" : "prayer"));
+	(void) sprintf(tmp_str, "You can't learn any new %ss!", (offset == config::spells::NAME_OFFSET_SPELLS ? "spell" : "prayer"));
         printMessage(tmp_str);
 
         game.player_free_turn = true;
@@ -881,7 +881,7 @@ void playerGainSpells() {
 
     // determine which spells player can learn
     // mages need the book to learn a spell, priests do not need the book
-    if (stat == PlayerAttr::A_INT) {
+    if (classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE) {
         spell_flag = playerDetermineLearnableSpells();
     } else {
         spell_flag = 0x7FFFFFFF;
@@ -913,7 +913,7 @@ void playerGainSpells() {
 
     if (new_spells == 0) {
         // do nothing
-    } else if (stat == PlayerAttr::A_INT) {
+    } else if (classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE) {
         // get to choose which mage spells will be learned
         terminalSaveScreen();
         displaySpellsList(spell_bank, spell_id, false, -1);
@@ -1002,8 +1002,12 @@ static int newMana(int stat) {
 
 // Gain some mana if you know at least one spell -RAK-
 void playerGainMana(int stat) {
+    if ( stat == PlayerAttr::A_WIS ) {
+	    stat = PlayerAttr::A_INT;
+	}
+
     if (py.flags.spells_learnt != 0) {
-        int new_mana = newMana(stat);
+        int new_mana = newMana(PlayerAttr::A_INT);
 
         // increment mana by one, so that first level chars have 2 mana
         if (new_mana > 0) {
@@ -1609,7 +1613,7 @@ void playerCalculateAllowedSpellsCount(int stat) {
     const char *magic_type_str = nullptr;
     int offset;
 
-    if (stat == PlayerAttr::A_INT) {
+    if (classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE) {
         magic_type_str = "spell";
         offset = config::spells::NAME_OFFSET_SPELLS;
     } else {

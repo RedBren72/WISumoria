@@ -748,11 +748,11 @@ static void playerGainLevel() {
     Class_t const &player_class = classes[py.misc.class_id];
 
     if (player_class.class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE) {
-        playerCalculateAllowedSpellsCount(PlayerAttr::A_INT);
+        playerCalculateAllowedSpellsCount(PlayerAttr::A_WIS);
         playerGainMana(PlayerAttr::A_INT);
     } else if (player_class.class_to_use_mage_spells == config::spells::SPELL_TYPE_PRIEST) {
         playerCalculateAllowedSpellsCount(PlayerAttr::A_WIS);
-        playerGainMana(PlayerAttr::A_WIS);
+        playerGainMana(PlayerAttr::A_INT);
     }
 }
 
