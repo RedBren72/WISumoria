@@ -51,6 +51,7 @@ set(cxx_warnings "${cxx_warnings} -Wswitch-default")
 set(cxx_warnings "${cxx_warnings} -Wswitch-enum")
 set(cxx_warnings "${cxx_warnings} -Wunreachable-code")
 set(cxx_warnings "${cxx_warnings} -Wwrite-strings")
+set(cxx_warnings "${cxx_warnings} -Wno-deprecated-declarations")
 
 # Some very strict warnings, that will be nice to use, but require some hefty refactoring
 # set(cxx_warnings "${cxx_warnings} -Wcast-qual")
@@ -256,8 +257,8 @@ elseif ((MSYS OR MINGW) AND NOT "$ENV{MINGW}" STREQUAL "")
     message(STATUS "NOTE: Configuring build for Windows release...")
 
     # Make the ncurses library static
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -static -lpthread")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -static -lpthread")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -static -lpthread -DNCURSES_STATIC")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -static -lpthread -DNCURSES_STATIC")
 
     set(CURSES_INCLUDE_DIR "/$ENV{MINGW}/include/")
     set(CURSES_LIBRARIES "/$ENV{MINGW}/lib/libncurses.a")
