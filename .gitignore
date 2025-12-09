@@ -1,7 +1,6 @@
 .idea
 .swp
 .tmp
-.json
 
 # CMake
 Makefile
@@ -77,8 +76,8 @@ nbproject
 umoria
 
 compile_commands.json
+*.json
 *.gz
 *.zip
 
 .DS_Store
-*.json
