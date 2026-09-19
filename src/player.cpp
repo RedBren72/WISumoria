@@ -850,7 +850,7 @@ void playerGainSpells() {
     // TODO(cook) move access to `magic_spells[]` directly to the for loop it's used in, below?
     Spell_t *spells = &magic_spells[py.misc.class_id - 1][0];
 
-    int stat, offset;
+    int offset;
 
     // Priests don't need light because they get spells from their god, so only
     // fail when can't see if player has SPELL_TYPE_MAGE spells. This check is done below.
@@ -859,10 +859,8 @@ void playerGainSpells() {
         if (!playerCanRead()) {
             return;
         }
-        stat = PlayerAttr::A_WIS;
         offset = config::spells::NAME_OFFSET_SPELLS;
     } else {
-        stat = PlayerAttr::A_WIS;
         offset = config::spells::NAME_OFFSET_PRAYERS;
     }
 
@@ -870,7 +868,7 @@ void playerGainSpells() {
 
     if (new_spells == 0) {
         vtype_t tmp_str = {'\0'};
-	(void) sprintf(tmp_str, "You can't learn any new %ss!", (offset == config::spells::NAME_OFFSET_SPELLS ? "spell" : "prayer"));
+        (void) snprintf(tmp_str, MORIA_MESSAGE_SIZE, "You can't learn any new %ss!", (offset == config::spells::NAME_OFFSET_SPELLS ? "spell" : "prayer"));
         printMessage(tmp_str);
 
         game.player_free_turn = true;
@@ -974,14 +972,14 @@ void playerGainSpells() {
 
     // set the mana for first level characters when they learn their first spell.
     if (py.misc.mana == 0) {
-        playerGainMana(stat);
+        playerGainMana();
     }
 }
 
-static int newMana(int stat) {
+static int newMana() {
     int levels = py.misc.level - classes[py.misc.class_id].min_level_for_spell_casting + 1;
 
-    switch (playerStatAdjustmentWisdomIntelligence(stat)) {
+    switch (playerStatAdjustmentWisdomIntelligence(PlayerAttr::A_INT)) {
         case 1:
         case 2:
             return 1 * levels;
@@ -1001,13 +999,9 @@ static int newMana(int stat) {
 }
 
 // Gain some mana if you know at least one spell -RAK-
-void playerGainMana(int stat) {
-    if ( stat == PlayerAttr::A_WIS ) {
-	    stat = PlayerAttr::A_INT;
-	}
-
+void playerGainMana() {
     if (py.flags.spells_learnt != 0) {
-        int new_mana = newMana(PlayerAttr::A_INT);
+        int new_mana = newMana();
 
         // increment mana by one, so that first level chars have 2 mana
         if (new_mana > 0) {
@@ -1475,12 +1469,12 @@ static void eliminateKnownSpellsGreaterThanLevel(Spell_t *msp_ptr, const char *p
     }
 }
 
-static int numberOfSpellsAllowed(int stat) {
+static int numberOfSpellsAllowed() {
     int levels = py.misc.level - classes[py.misc.class_id].min_level_for_spell_casting + 1;
 
     int allowed;
 
-    switch (playerStatAdjustmentWisdomIntelligence(stat)) {
+    switch (playerStatAdjustmentWisdomIntelligence(PlayerAttr::A_WIS)) {
         case 1:
         case 2:
         case 3:
@@ -1607,7 +1601,7 @@ static void forgetSpells(int new_spells, const char *p, int offset) {
 
 // calculate number of spells player should have, and
 // learn forget spells until that number is met -JEW-
-void playerCalculateAllowedSpellsCount(int stat) {
+void playerCalculateAllowedSpellsCount() {
     Spell_t &spell = magic_spells[py.misc.class_id - 1][0];
 
     const char *magic_type_str = nullptr;
@@ -1625,7 +1619,7 @@ void playerCalculateAllowedSpellsCount(int stat) {
     eliminateKnownSpellsGreaterThanLevel(&spell, magic_type_str, offset);
 
     // calc number of spells allowed
-    int num_allowed = numberOfSpellsAllowed(stat);
+    int num_allowed = numberOfSpellsAllowed();
     int num_known = numberOfSpellsKnown();
     int new_spells = num_allowed - num_known;
 

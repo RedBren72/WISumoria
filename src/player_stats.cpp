@@ -266,10 +266,13 @@ void playerSetAndUseStat(int stat) {
         playerRecalculateBonuses();
     } else if (stat == PlayerAttr::A_DEX) {
         playerRecalculateBonuses();
-    } else if (stat == PlayerAttr::A_INT && ( classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE || classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_PRIEST ) ) {
-        playerGainMana(PlayerAttr::A_INT); // INT = What you can do
-    } else if (stat == PlayerAttr::A_WIS && ( classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE || classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_PRIEST ) ) {
-        playerCalculateAllowedSpellsCount(PlayerAttr::A_WIS); // WIS = What you can learn
+    } else if (stat == PlayerAttr::A_INT && classes[py.misc.class_id].class_to_use_mage_spells != config::spells::SPELL_TYPE_NONE) {
+        playerGainMana(); // INT = Mental Energy (Max Spell Points)
+    } else if (stat == PlayerAttr::A_WIS && classes[py.misc.class_id].class_to_use_mage_spells != config::spells::SPELL_TYPE_NONE) {
+        playerCalculateAllowedSpellsCount(); // WIS = Mental Capacity (Spells Known)
+        if (py.flags.spells_learnt == 0 && py.misc.mana != 0) {
+            playerGainMana();
+        }
     } else if (stat == PlayerAttr::A_CON) {
         playerCalculateHitPoints();
     }

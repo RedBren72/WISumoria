@@ -221,7 +221,7 @@ bool playerWornItemIsCursed(PlayerEquipment id);
 void playerWornItemRemoveCurse(PlayerEquipment id);
 
 void playerGainSpells();
-void playerGainMana(int stat);
+void playerGainMana();
 int playerWeaponCriticalBlow(int weapon_weight, int plus_to_hit, int damage, int attack_type_id);
 bool playerSavingThrow();
 
@@ -230,7 +230,7 @@ void playerOpenClosedObject();
 void playerCloseDoor();
 bool playerTunnelWall(Coord_t coord, int digging_ability, int digging_chance);
 void playerAttackPosition(Coord_t coord);
-void playerCalculateAllowedSpellsCount(int stat);
+void playerCalculateAllowedSpellsCount();
 
 char *playerRankTitle();
 
