@@ -793,6 +793,9 @@ void itemDescription(obj_desc_t description, Inventory_t const &item, bool add_p
     }
     (void) strcat(tmp_val, tmp_str);
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
+
     // ampersand is always the first character
     if (tmp_val[0] == '&') {
         // use &tmp_val[1], so that & does not appear in output
@@ -815,6 +818,9 @@ void itemDescription(obj_desc_t description, Inventory_t const &item, bool add_p
             // here if no article
             (void) snprintf(description, MORIA_OBJ_DESC_SIZE, "no more %s", tmp_val);
         }
+
+#pragma GCC diagnostic pop
+
     } else {
         (void) strcpy(description, tmp_val);
     }

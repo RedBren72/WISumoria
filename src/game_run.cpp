@@ -955,7 +955,7 @@ static int getCommandRepeatCount(char &last_input_command) {
         last_input_command = '0';
     }
 
-    char text_buffer[8];
+    char text_buffer[17];
     int repeat_count = 0;
 
     while (true) {
@@ -968,7 +968,7 @@ static int getCommandRepeatCount(char &last_input_command) {
                 terminalBellSound();
             } else {
                 repeat_count = repeat_count * 10 + last_input_command - '0';
-                (void) snprintf(text_buffer, 8, "%d", repeat_count);
+                (void) snprintf(text_buffer, 16, "%d", repeat_count);
                 putStringClearToEOL(text_buffer, Coord_t{0, 14});
             }
         } else {
@@ -979,7 +979,7 @@ static int getCommandRepeatCount(char &last_input_command) {
 
     if (repeat_count == 0) {
         repeat_count = 99;
-        (void) snprintf(text_buffer, 8, "%d", repeat_count);
+        (void) snprintf(text_buffer, 16, "%d", repeat_count);
         putStringClearToEOL(text_buffer, Coord_t{0, 14});
     }
 
