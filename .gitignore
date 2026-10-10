@@ -1,6 +1,6 @@
-.idea
-.swp
-.tmp
+*.idea
+*.swp
+*.tmp
 
 # CMake
 Makefile
@@ -71,6 +71,8 @@ dkms.conf
 *.cbp
 
 # build directories
+build
+bin
 umoria.xcodeproj
 nbproject
 umoria

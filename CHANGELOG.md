@@ -1,3 +1,21 @@
+# WICmoria CHANGELOG
+
+Tracking all changes since the 5.7.0 / Umoria baseline.
+
+
+## 0.1.0 (WICmoria Initial Release)
+
+### Core Stat Repurposing (INT & WIS)
+
+* **Intelligence (INT) Overhaul:** Repurposed as **Mental Constitution**. INT now governs the total Spell Point (SP) capacity / max mana pool for all casting classes.
+* **Wisdom (WIS) Overhaul:** Repurposed as **Mental Strength**. WIS now governs total active learnable spell/prayer slot capacity for all casting classes.
+* **Class Tactical Asymmetry:**
+  * **Arcane Casters (Mages & Rangers):** INT primary grants deep mana reserves, but restricted WIS limits active learned spell capacity—forcing deliberate spell selection.
+  * **Divine Casters (Clerics & Paladins):** WIS primary grants vast library capacity/slots, but constrained INT limits maximum mana—forcing careful spell point management.
+
+---
+
+
 # Umoria CHANGELOG
 
 Tracking all changes since the 5.6.0 release.
