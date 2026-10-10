@@ -185,7 +185,7 @@ file(COPY ${data_files} DESTINATION "${data_dir}")
 set(
         support_files
         data/scores.dat
-        AUTHORS
+        AUTHORS.md
         LICENSE
 )
 file(COPY ${support_files} DESTINATION "${build_dir}")
