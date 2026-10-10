@@ -7,6 +7,30 @@ In 2008 Moria/Umoria was re-licensed under the GNU General Public License
 version 3.0-or-later. All new additions to the code will fall under this license.
 
 
+## WICmoria 0.1.x
+
+Brendan Weir [-BJW-] (GPL-3.0-or-later)
+  This is a fork to give INT and WIS stats a more distinct purpose.
+
+  WIS is mental strength - Determines number of spells that can be learned
+  INT is mental constitution - Determines number of spells that can be cast
+
+  Arcane players can no longer ignore WIS and divine players can no longer
+  ignore INT.
+
+  Arcane magic users have INT as their primary stat, so they can cast lots of
+  spells, but with lower WIS, they are limited in how many they can learn, so
+  they have to be choosy, just like classic D&D
+
+  Divine magic users have WIS as their primary stat, so they can learn lots of
+  prayers, but with lower INT, they are limited in how many they can cast.
+  
+  This means arcane and divine players now have to play using different
+  tactics, rather than playing the same way just with different spells/prayers.
+
+  I plan to make CHR have more relevance for all players, which is why this is
+  W(IS)I(NT)C(HR)moria.
+
 ## Umoria 5.7.x
 
 Michael R. Cook [-MRC-] (GPL-3.0-or-later)
