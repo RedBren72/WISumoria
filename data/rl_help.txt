@@ -20,8 +20,8 @@ Command Summary (@ is optional count, ~ is direction, ^R redraws, ESC aborts)
 @ CTRL-P  Previous message review   |   {       Inscribe an object
 @ -  ~    Move without pickup       |   ?       View this page
 @ CTRL  ~ Tunnel in a direction     |   CTRL-X  Save character and quit
-@ SHIFT ~ Run in direction          | @ ~       For movement
   CTRL-F  Forget a spell (TBC)      |
+@ SHIFT ~ Run in direction          | @ ~       For movement
 
 Directions:     y  k  u
                 h  .  l  [. to rest]
@@ -55,8 +55,8 @@ just typed in.  To avoid this, you can either enter ^H as two characters
 number at which point you will get a command prompt and backspace will
 work correctly.
 
-Umoria is free software, and you are welcome to distribute it
+WICmoria is free software, and you are welcome to distribute it
 under certain conditions; for details, type control-V.
 
-Umoria comes with ABSOLUTELY NO WARRANTY; for details,
+WICmoria comes with ABSOLUTELY NO WARRANTY; for details,
 type control-V and view sections 15-17 of the License.
