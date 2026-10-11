@@ -4,14 +4,14 @@
 %define __builddir %{_vpath_builddir}
 %endif
 
-Name:           umoria
-Version:        5.7.15
-Release:        3%{?dist}
-Summary:    	Umoria %{version}
+Name:           wicmoria
+Version:        0.1.0
+Release:        1%{?dist}
+Summary:    	wicmoria %{version}
 
 License:        GPL-3.0
 URL:            https://umoria.org 
-Source0:        umoria-%{version}.tar.gz
+Source0:        wicmoria-%{version}.tar.gz
 
 BuildRequires:  ncurses-devel gcc-c++ cmake
 Requires:       ncurses-libs
@@ -38,33 +38,33 @@ mkdir %{_vpath_builddir} && (cd %{_vpath_builddir}; %cmake ..; %cmake_build )
 
 %install
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-cp %{_vpath_builddir}/umoria/umoria $RPM_BUILD_ROOT/%{_bindir}/umoria.bin
-mkdir -p $RPM_BUILD_ROOT/%{_datadir}/games/umoria
-cp -R %{_vpath_builddir}/umoria/data $RPM_BUILD_ROOT/%{_datadir}/games/umoria
-mkdir -p $RPM_BUILD_ROOT/%{_docdir}/umoria/historical
-cp historical/* $RPM_BUILD_ROOT/%{_docdir}/umoria/historical
+cp %{_vpath_builddir}/WICmoria/wicmoria $RPM_BUILD_ROOT/%{_bindir}/wicmoria.bin
+mkdir -p $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria
+cp -R %{_vpath_builddir}/WICmoria/data $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria
+mkdir -p $RPM_BUILD_ROOT/%{_docdir}/wicmoria/historical
+cp historical/* $RPM_BUILD_ROOT/%{_docdir}/wicmoria/historical
 
-cat << EOF > $RPM_BUILD_ROOT/%{_bindir}/umoria
+cat << EOF > $RPM_BUILD_ROOT/%{_bindir}/wicmoria
 #!/bin/sh
-CONFDIR=~/.config/umoria
-DATADIR=%{_datadir}/games/umoria/data
-BIN=%{_bindir}/umoria.bin
+CONFDIR=~/.config/wicmoria
+DATADIR=%{_datadir}/games/wicmoria/data
+BIN=%{_bindir}/wicmoria.bin
 [ ! -d \$CONFDIR ] && mkdir -p \$CONFDIR && ln -s \$DATADIR \$CONFDIR/data
 [ ! -f \$CONFDIR/scores.dat ] && touch \$CONFDIR/scores.dat
 (cd \$CONFDIR; \$BIN \$@)
 EOF
 
-chmod +x $RPM_BUILD_ROOT/%{_bindir}/umoria
+chmod +x $RPM_BUILD_ROOT/%{_bindir}/wicmoria
 
 %postun
-echo "Please remove each user's ~/.config/umoria manually, if you need."
+echo "Please remove each user's ~/.config/wicmoria manually, if you need."
 
 %files
-%{_bindir}/umoria*
-%{_datadir}/games/umoria/data/*
-%{_docdir}/umoria/historical/*
+%{_bindir}/wicmoria*
+%{_datadir}/games/wicmoria/data/*
+%{_docdir}/wicmoria/historical/*
 %license LICENSE
-%doc *.md AUTHORS
+%doc *.md
 
 
 
