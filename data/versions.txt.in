@@ -1,4 +1,19 @@
-                          Umoria ${umoria_version}  (${current_date})
+                WICmoria ${wicmoria_version}  (${current_date})
+
+                WICmoria is free software released under GPL-3.0
+                   See LICENSE and AUTHORS.md for more details
+
+WICmoria 0.1.x forked from Umoria 5.7.15 by Brendan J. Weir.
+
+Bug reports and contributions can be made to the Umoria repository:
+https://github.com/RedBren72/WISumoria
+
+        Version 0.1  :  2026-10-11
+
+Umoria 5.7.x developed and maintained by Michael R. Cook.
+
+Bug reports and contributions can be made to the Umoria repository:
+https://github.com/dungeons-of-moria/umoria
 
 Previous major releases:
 
@@ -12,11 +27,6 @@ Previous major releases:
             1989-02-26 : v5.0.0
             1988-05-26 : v4.87
             1987-10-26 : v4.85
-
-
-Umoria 5.7.x developed and maintained by Michael R. Cook.
-Bug reports and contributions can be made to the Umoria repository:
-https://github.com/dungeons-of-moria/umoria
 
 
                Umoria is free software released under GPL-3.0
