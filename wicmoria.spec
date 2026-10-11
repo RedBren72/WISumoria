@@ -64,9 +64,7 @@ echo "Please remove each user's ~/.config/wicmoria manually, if you need."
 %{_datadir}/games/wicmoria/data/*
 %{_docdir}/wicmoria/historical/*
 %license LICENSE
-%doc *.md AUTHORS
-
-
+%doc *.md
 
 %changelog
 * Sat Oct 10 2026 Brendan Weir <brendanweir13@gmail.com> - 0.1.1
