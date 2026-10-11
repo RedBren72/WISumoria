@@ -48,3 +48,29 @@ Redesign INT and WIS:
     - A blend of both stats.
 - [ ] **Utility for Non-Casters (Warrior)**
   - Validate if INT (Magic Device, Disarm Traps) and WIS (Saving Throws) provide enough distinction for non-caster classes, or if mental attributes should offer additional utility.
+
+
+## Release & Build Pipeline (v0.1.0 Post-Baseline Cleanup)
+
+- [ ] **Project Target & Directory Renaming (WICmoria)**
+  - [ ] Update `project(wicmoria)` and target name `add_executable(wicmoria)` in `CMakeLists.txt`.
+  - [ ] Update build directory references from `WISmoria` to `WICmoria` in `CMakeLists.txt`.
+  - [ ] Rename local workspace directory from `~/src/WISmoria` to `~/src/WICmoria`.
+  - [ ] Update GitHub remote URL (`git remote set-url origin git@github.com:RedBren72/WICmoria.git`) after renaming the repo on GitHub.
+- [ ] **Release Packaging & Distribution**
+  - [ ] Generate clean release tarball from `v0.1.0` tag (`git archive --prefix=wicmoria-0.1.0/ -o wicmoria-0.1.0.tar.gz v0.1.0`).
+  - [ ] Update `umoria.spec` / `wicmoria.spec` metadata to version `0.1.0`, matching `AUTHORS.md` docs and binary outputs.
+  - [ ] Test local RPM build with `rpmbuild -ba` to produce `wicmoria-0.1.0-1.x86_64.rpm`.
+
+---
+
+## Future Feature Roadmap (v0.2.0 - Stat & Mechanics Overhaul)
+
+- [ ] **Charisma (CHR) Stat Overhaul**
+  - [ ] **Stealth & Aggro:** Rebalance monster wake-up / notice chances based on CHR (presence/aura).
+  - [ ] **Intimidation / Morale:** Evaluate CHR checks for monster fear/fleeing on hit.
+  - [ ] **Saving Throws:** Repurpose CHR for mental resilience / charm / confusion saving throw adjustments.
+  - [ ] **Pseudo-Identification:** Link item feeling / pseudo-id accuracy and speed to CHR.
+- [ ] **Town & Book Casting Mechanics**
+  - [ ] Restrict learning/studying new spells to Town level only (inn/temple study).
+  - [ ] Cap active spell book carrying capacity or enforce town-based library preparation.

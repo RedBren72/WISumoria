@@ -162,7 +162,7 @@ set(
 #
 # Set up the install paths and files
 #
-set(build_dir "wicmoria")
+set(build_dir "WICmoria")
 set(data_dir "${build_dir}/data")
 
 
@@ -187,6 +187,7 @@ set(
         data/scores.dat
         AUTHORS.md
         LICENSE
+	README.md
 )
 file(COPY ${support_files} DESTINATION "${build_dir}")
 
@@ -205,7 +206,7 @@ set(wicmoria_version_minor ${CMAKE_MATCH_1})
 string(REGEX MATCH "CURRENT_VERSION_PATCH = ([0-9]+);" ${VERSION_HEADER})
 set(wicmoria_version_patch ${CMAKE_MATCH_1})
 
-set(wicmoria_version "${umoria_version_major}.${umoria_version_minor}.${umoria_version_patch}")
+set(wicmoria_version "${wicmoria_version_major}.${wicmoria_version_minor}.${wicmoria_version_patch}")
 
 
 #

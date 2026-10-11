@@ -10,6 +10,7 @@ Release:        1%{?dist}
 Summary:    	wicmoria %{version}
 
 License:        GPL-3.0
+URL:            https://umoria.org 
 Source0:        wicmoria-%{version}.tar.gz
 
 BuildRequires:  ncurses-devel gcc-c++ cmake
@@ -37,9 +38,9 @@ mkdir %{_vpath_builddir} && (cd %{_vpath_builddir}; %cmake ..; %cmake_build )
 
 %install
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-cp %{_vpath_builddir}/wicmoria/wicmoria $RPM_BUILD_ROOT/%{_bindir}/wicmoria.bin
+cp %{_vpath_builddir}/WICmoria/wicmoria $RPM_BUILD_ROOT/%{_bindir}/wicmoria.bin
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria
-cp -R %{_vpath_builddir}/wicmoria/data $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria
+cp -R %{_vpath_builddir}/WICmoria/data $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria
 mkdir -p $RPM_BUILD_ROOT/%{_docdir}/wicmoria/historical
 cp historical/* $RPM_BUILD_ROOT/%{_docdir}/wicmoria/historical
 
