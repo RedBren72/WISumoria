@@ -21,10 +21,8 @@ Requires:       ncurses-libs
 The Dungeons of Moria is a single player dungeon simulation originally written by Robert Alan Koeneke, with its first public release in 1983.
 The game was originally developed using VMS Pascal before being ported to the C language by James E. Wilson in 1988, and released a Umoria.
 
-
 %prep
 %autosetup
-
 
 %build
 
@@ -41,6 +39,7 @@ mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 cp %{_vpath_builddir}/WICmoria/wicmoria $RPM_BUILD_ROOT/%{_bindir}/wicmoria.bin
 mkdir -p $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria
 cp -R %{_vpath_builddir}/WICmoria/data $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria
+cp LICENSE $RPM_BUILD_ROOT/%{_datadir}/games/wicmoria/data/LICENSE
 mkdir -p $RPM_BUILD_ROOT/%{_docdir}/wicmoria/historical
 cp historical/* $RPM_BUILD_ROOT/%{_docdir}/wicmoria/historical
 
@@ -63,10 +62,11 @@ echo "Please remove each user's ~/.config/wicmoria manually, if you need."
 %{_bindir}/wicmoria*
 %{_datadir}/games/wicmoria/data/*
 %{_docdir}/wicmoria/historical/*
-%doc *.md LICENSE
+%license LICENSE
+%doc *.md
 
 %changelog
-* Sat Oct 10 2026 Brendan Weir <brendanweir13@gmail.com> - 0.1.1
+* Sat Oct 10 2026 Brendan Weir <brendanweir13@gmail.com> - 0.1.0
 - This is a fork from umoria that makes INT and WIS from being class-specific
   duplicates to having distinct purposes.
 

@@ -178,6 +178,7 @@ set(
         data/welcome.txt
         data/death_tomb.txt
         data/death_royal.txt
+        LICENSE
 )
 file(COPY ${data_files} DESTINATION "${data_dir}")
 
@@ -186,7 +187,6 @@ set(
         support_files
         data/scores.dat
         AUTHORS.md
-        LICENSE
 	README.md
 )
 file(COPY ${support_files} DESTINATION "${build_dir}")
