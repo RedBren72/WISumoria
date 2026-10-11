@@ -64,16 +64,12 @@ echo "Please remove each user's ~/.config/wicmoria manually, if you need."
 %{_datadir}/games/wicmoria/data/*
 %{_docdir}/wicmoria/historical/*
 %license LICENSE
-%doc *.md
+%doc *.md AUTHORS
 
 
 
 %changelog
-* Sat Dec 30 2023 Shiro Hara <white@vx-xv.com> - 5.7.15-3
-- Enable roguelike keys via the CLI
+* Sat Oct 10 2026 Brendan Weir <brendanweir13@gmail.com> - 0.1.1
+- This is a fork from umoria that makes INT and WIS from being class-specific
+  duplicates to having distinct purposes.
 
-* Sat Jul 1 2023 Shiro Hara <white@vx-xv.com> - 5.7.15-2
-- Add files in "historical" to doc (Thanks, Justin Koh)
-
-* Sat Feb 18 2023 Shiro Hara <white@vx-xv.com> -5.7.15-1
-- Add .spec file

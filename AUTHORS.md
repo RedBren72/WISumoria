@@ -10,10 +10,11 @@ version 3.0-or-later. All new additions to the code will fall under this license
 ## WICmoria 0.1.x
 
 Brendan Weir [-BJW-] (GPL-3.0-or-later)
-  This is a fork to give INT and WIS stats a more distinct purpose.
+  This is a fork from Umoria that changes INT and WIS from being class-specific
+  duplicates to having distinct purposes.
 
-  WIS is mental strength - Determines number of spells that can be learned
-  INT is mental constitution - Determines number of spells that can be cast
+  WIS is now mental strength - Determines number of spells that can be learned
+  INT is now mental constitution - Determines number of spells that can be cast
 
   Arcane players can no longer ignore WIS and divine players can no longer
   ignore INT.
