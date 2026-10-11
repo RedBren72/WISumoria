@@ -5,7 +5,7 @@ if (${CMAKE_SOURCE_DIR} STREQUAL "${PROJECT_SOURCE_DIR}/src")
     message(FATAL_ERROR "CMake generation is not allowed within the source directory!")
 endif ()
 
-project(wismoria
+project(wicmoria
     LANGUAGES CXX
 )
 
@@ -162,7 +162,7 @@ set(
 #
 # Set up the install paths and files
 #
-set(build_dir "WISmoria")
+set(build_dir "wicmoria")
 set(data_dir "${build_dir}/data")
 
 
@@ -197,15 +197,15 @@ file(COPY ${support_files} DESTINATION "${build_dir}")
 file(STRINGS "${source_dir}/version.h" VERSION_HEADER)
 
 string(REGEX MATCH "CURRENT_VERSION_MAJOR = ([0-9]+);" ${VERSION_HEADER})
-set(wismoria_version_major ${CMAKE_MATCH_1})
+set(wicmoria_version_major ${CMAKE_MATCH_1})
 
 string(REGEX MATCH "CURRENT_VERSION_MINOR = ([0-9]+);" ${VERSION_HEADER})
-set(wismoria_version_minor ${CMAKE_MATCH_1})
+set(wicmoria_version_minor ${CMAKE_MATCH_1})
 
 string(REGEX MATCH "CURRENT_VERSION_PATCH = ([0-9]+);" ${VERSION_HEADER})
-set(wismoria_version_patch ${CMAKE_MATCH_1})
+set(wicmoria_version_patch ${CMAKE_MATCH_1})
 
-set(wismoria_version "${umoria_version_major}.${umoria_version_minor}.${umoria_version_patch}")
+set(wicmoria_version "${umoria_version_major}.${umoria_version_minor}.${umoria_version_patch}")
 
 
 #
@@ -214,7 +214,7 @@ set(wismoria_version "${umoria_version_major}.${umoria_version_minor}.${umoria_v
 
 # Fetch release date from CHANGELOG if it's there :-)
 file(READ "CHANGELOG.md" changelog)
-string(REGEX MATCH "## ${wismoria_version} \\(([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])\\)" results ${changelog})
+string(REGEX MATCH "## ${wicmoria_version} \\(([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])\\)" results ${changelog})
 list(LENGTH results match_count)
 if (match_count EQUAL 0)
     string(TIMESTAMP current_date "%Y-%m-%d" UTC)
@@ -236,7 +236,7 @@ endforeach ()
 set(resources ${data_files} ${support_files})
 
 # Also add resources to the target so they are visible in the IDE
-add_executable(wismoria ${source_files} ${resources})
+add_executable(wicmoria ${source_files} ${resources})
 
 
 #
@@ -269,4 +269,4 @@ else ()
 endif ()
 
 include_directories(${CURSES_INCLUDE_DIR})
-target_link_libraries(wismoria ${CURSES_LIBRARIES})
+target_link_libraries(wicmoria ${CURSES_LIBRARIES})
