@@ -221,6 +221,7 @@ bool playerWornItemIsCursed(PlayerEquipment id);
 void playerWornItemRemoveCurse(PlayerEquipment id);
 
 void playerGainSpells();
+void playerForgetSpell();
 void playerGainMana();
 int playerWeaponCriticalBlow(int weapon_weight, int plus_to_hit, int damage, int attack_type_id);
 bool playerSavingThrow();

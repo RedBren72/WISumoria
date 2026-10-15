@@ -1647,6 +1647,115 @@ void playerCalculateAllowedSpellsCount() {
     }
 }
 
+// Let player voluntarily forget a spell
+void playerForgetSpell() {
+    if (py.flags.confused > 0) {
+        printMessage("You are too confused.");
+        return;
+    }
+
+    // Clerics cannot forget prayers (blasphemy to forget divine revelation)
+    // Paladins (if they use prayers) or Mages can forget spells.
+    // Assuming class_to_use_mage_spells == SPELL_TYPE_PRAYER distinguishes divine classes,
+    // and we exempt pure clerics if desired, or check specifically for priests/clerics.
+    if (classes[py.misc.class_id].class_to_use_mage_spells != config::spells::SPELL_TYPE_MAGE) {
+        // Check if class is specifically a Priest/Cleric vs Paladin if needed, 
+        // or block all prayer users. Here we block divine revelation (Priests/Clerics).
+        // Adjust class_id check based on your specific class indices.
+        // For example, if class_id for Priest is a certain value:
+        if (py.misc.class_id == 2) { // Adjust index to match your Cleric/Priest class ID
+            printMessage("It would be blasphemy to forget divine revelation!");
+            game.player_free_turn = true;
+            return;
+        }
+    }
+
+    if (py.flags.spells_learnt == 0) {
+        printMessage("You don't know any spells!");
+        game.player_free_turn = true;
+        return;
+    }
+
+    const char *magic_type_str = nullptr;
+    int offset;
+
+    if (classes[py.misc.class_id].class_to_use_mage_spells == config::spells::SPELL_TYPE_MAGE) {
+        magic_type_str = "spell";
+        offset = config::spells::NAME_OFFSET_SPELLS;
+    } else {
+        magic_type_str = "prayer";
+        offset = config::spells::NAME_OFFSET_PRAYERS;
+    }
+
+    // Build a list of currently learned spells
+    int spell_list[31];
+    int spell_count = 0;
+    uint32_t mask = 0x1;
+
+    for (int i = 0; i < 32; mask <<= 1, i++) {
+        if ((py.flags.spells_learnt & mask) != 0u) {
+            spell_list[spell_count] = i;
+            spell_count++;
+        }
+    }
+
+    if (spell_count == 0) {
+        printMessage("You don't know any spells!");
+        game.player_free_turn = true;
+        return;
+    }
+
+    terminalSaveScreen();
+    displaySpellsList(spell_list, spell_count, false, -1);
+
+    char query;
+    bool forgotten = false;
+    vtype_t prompt_str = {'\0'};
+    (void) snprintf(prompt_str, MORIA_MESSAGE_SIZE, "Forget which %s?", magic_type_str);
+
+    while (!forgotten && getMenuItemId(prompt_str, query)) {
+        int c = query - 'a';
+        if (c >= 0 && c < spell_count && c < 22) {
+            int spell_id = spell_list[c];
+            uint32_t spell_mask = (1L << spell_id);
+
+            py.flags.spells_learnt &= ~spell_mask;
+            py.flags.spells_forgotten |= spell_mask;
+
+            // Remove from learned order array
+            for (int i = 0; i < 32; i++) {
+                if (py.flags.spells_learned_order[i] == spell_id) {
+                    py.flags.spells_learned_order[i] = 99;
+                    // Shift remaining orders down
+                    for (int j = i; j < 31; j++) {
+                        py.flags.spells_learned_order[j] = py.flags.spells_learned_order[j + 1];
+                    }
+                    py.flags.spells_learned_order[31] = 99;
+                    break;
+                }
+            }
+
+            vtype_t msg = {'\0'};
+            (void) snprintf(msg, MORIA_MESSAGE_SIZE, "You have forgotten the %s of %s.", magic_type_str, spell_names[spell_id + offset]);
+            printMessage(msg);
+            forgotten = true;
+        } else {
+            terminalBellSound();
+        }
+    }
+
+    terminalRestoreScreen();
+
+    if (forgotten) {
+        playerCalculateAllowedSpellsCount();
+        playerGainMana();
+    } else {
+        game.player_free_turn = true;
+    }
+}
+
+
+
 char *playerRankTitle() {
     const char *p = nullptr;
 
