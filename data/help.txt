@@ -17,7 +17,7 @@ Command Summary (@ is optional count, ~ is direction, ^R redraws, ESC aborts)
   t        Take off an item            | @ -        Move without pickup
   u        Use a staff                 |   . ~      Run in direction
   v        Version info and credits    |   /        Identify a character
-  w        Wear/Wield an item          |   CTRL-F   Forget a spell (TBC)
+  w        Wear/Wield an item          |   CTRL-G   Forget a spell (TBC)
   x        Exchange weapon             |   CTRL-K   Quit the game
   <        Go up an up-staircase       | @ CTRL-P   Repeat the last message
   >        Go down a down-staircase    |   CTRL-X   Save character and quit

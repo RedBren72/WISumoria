@@ -1772,6 +1772,9 @@ static void doCommand(char command) {
         case 'G': // (G)ain magic spells
             playerGainSpells();
             break;
+        case CTRL_KEY('G'): // for(G)et magic spell
+            playerForgetSpell();
+            break;
         case 'V': // (V)iew scores
             terminalSaveScreen();
             showScoresScreen();
